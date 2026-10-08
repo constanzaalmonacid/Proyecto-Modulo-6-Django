@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Inicio
+{% endblock %}
+
+{% block content %}
+
+<h2>Bienvenido/a {{ user.username }}</h2>
+
+<p>
+    En esta página puedes administrar tus proyectos y las tareas
+    que tienes asociadas.
+</p>
+
+<hr>
+
+<h3>Resumen</h3>
+
+<p>
+    Cantidad de proyectos:
+    <strong>{{ proyectos|length }}</strong>
+</p>
+
+<p>
+    Cantidad de tareas:
+    <strong>{{ tareas|length }}</strong>
+</p>
+
+<br>
+
+<a class="boton"
+   href="{% url 'proyecto_create' %}">
+    Crear proyecto
+</a>
+
+<a class="boton"
+   href="{% url 'tarea_create' %}">
+    Crear tarea
+</a>
+
+{% endblock %}

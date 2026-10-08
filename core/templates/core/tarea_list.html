@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h1>Mis tareas</h1>
+
+<a href="{% url 'tarea_create' %}">Nueva tarea</a>
+
+{% for tarea in tareas %}
+<div class="card">
+    <h3>{{ tarea.titulo }}</h3>
+    <p>Proyecto: {{ tarea.proyecto.nombre }}</p>
+    <p>Estado: {{ tarea.get_estado_display }}</p>
+    <p>{{ tarea.descripcion }}</p>
+    <a href="{% url 'tarea_update' tarea.pk %}">Editar</a>
+    <a href="{% url 'tarea_delete' tarea.pk %}">Eliminar</a>
+</div>
+{% empty %}
+<p>No tienes tareas registradas.</p>
+{% endfor %}
+{% endblock %}

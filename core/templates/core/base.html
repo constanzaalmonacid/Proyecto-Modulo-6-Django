@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Mis Proyectos{% endblock %}</title>
+
+    <style>
+
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-color: #fff5f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #e8a6ba;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #5c2b3a;
+        }
+
+        nav {
+            background-color: #f3c6d3;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #5c2b3a;
+            margin: 10px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .contenido {
+            width: 80%;
+            margin: 30px auto;
+            background-color: white;
+            padding: 25px;
+            border: 1px solid #e8a6ba;
+            border-radius: 10px;
+        }
+
+        h1, h2, h3 {
+            color: #a6536d;
+        }
+
+        button {
+            background-color: #d98aa2;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-family: "Times New Roman", Times, serif;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #bd7188;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            max-width: 500px;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 12px;
+            border: 1px solid #d9a1b2;
+            border-radius: 5px;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .card {
+            border: 1px solid #e8a6ba;
+            background-color: #fff8fa;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+
+        .boton {
+            background-color: #d98aa2;
+            color: white;
+            padding: 7px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .boton:hover {
+            background-color: #bd7188;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 15px;
+            background-color: #f3c6d3;
+            color: #5c2b3a;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Gestor de Proyectos y Tareas</h1>
+</header>
+
+<nav>
+
+    {% if user.is_authenticated %}
+
+        <a href="{% url 'dashboard' %}">Inicio</a>
+
+        <a href="{% url 'proyecto_list' %}">
+            Proyectos
+        </a>
+
+        <a href="{% url 'tarea_list' %}">
+            Tareas
+        </a>
+
+        <form method="post"
+              action="{% url 'logout' %}"
+              style="display:inline;">
+
+            {% csrf_token %}
+
+            <button type="submit">
+                Cerrar sesión
+            </button>
+
+        </form>
+
+    {% else %}
+
+        <a href="{% url 'login' %}">
+            Iniciar sesión
+        </a>
+
+        <a href="{% url 'registro' %}">
+            Registrarse
+        </a>
+
+    {% endif %}
+
+</nav>
+
+<div class="contenido">
+
+    {% block content %}
+
+    {% endblock %}
+
+</div>
+
+<footer>
+    Proyecto módulo 6 - Django
+</footer>
+</body>
+</html>
